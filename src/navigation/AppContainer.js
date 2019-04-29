@@ -20,6 +20,7 @@ const Drawer = createDrawerNavigator(
   {
     initialRouteName: "Podometer",
     contentComponent: props => <SideBar {...props} />
+
   }
 );
 
