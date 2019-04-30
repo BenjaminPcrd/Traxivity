@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import AppContainer from './navigation/AppContainer';
-/*import { Provider } from 'react-redux'
+import { Provider } from 'react-redux'
 import Store from './store/configureStore'
 
-import { Root } from "native-base";*/
+/*import { Root } from "native-base";*/
 
 export default class App extends Component {
   render() {
@@ -15,7 +15,9 @@ export default class App extends Component {
       </Provider>
     );*/
     return (
-      <AppContainer />
+      <Provider store={Store}>
+        <AppContainer />
+      </Provider>
     );
   }
 }

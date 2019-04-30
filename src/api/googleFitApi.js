@@ -20,8 +20,6 @@ Scopes.FITNESS_REPRODUCTIVE_HEALTH_READ,
 Scopes.FITNESS_REPRODUCTIVE_HEALTH_READ_WRITE
 */
 export function getAuth() {
-  GoogleFit.isAvailable((error, res) => {console.log("isAvailable " + error + res)})
-  GoogleFit.isEnabled((error, res) => {console.log("isEnabled " + error + res)})
   const options = {
     scopes: [
       Scopes.FITNESS_ACTIVITY_READ,
@@ -43,8 +41,7 @@ export function getAuth() {
   })
 }
 
-
-export function getDailyStepCount() {
+export function getDailyStepCount(callback) {
   var start = new Date()
   var end = new Date()
   start.setHours(0, 0, 0, 0)
@@ -52,9 +49,10 @@ export function getDailyStepCount() {
   GoogleFit.getDailyStepCountSamples(start, end)
     .then((res) => {
       console.log(res[2].steps[0].value)
+      callback(false, res[2].steps[0].value)
     })
     .catch((err) => {
       console.warn(err)
+      callback(err, false)
     })
-
 }
