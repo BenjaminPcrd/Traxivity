@@ -11,31 +11,12 @@ import {
   Tab,
   Text
 } from "native-base";
-import { getAuth, getDailyStepCount } from '../../api/googleFitApi'
-import { connect } from 'react-redux';
-import GoogleFit from 'react-native-google-fit'
-//import DayPodometer from './DayPodometer';
+
+import DayPodometer from './DayPodometer';
 //import WeekPodometer from './WeekPodometer';
 
-class Podometer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      nbSteps: 0
-    }
-    getAuth()
-  }
-
-  componentDidMount() {
-    GoogleFit.onAuthorize((res) => {
-      getDailyStepCount((error, result) => {
-        this.setState({nbSteps: result})
-      })
-    })
-  }
-
+export default class Podometer extends Component {
   render() {
-    console.log(this.props)
     return (
       <Container>
         <Header>
@@ -53,7 +34,7 @@ class Podometer extends Component {
         </Header>
         <Tabs>
           <Tab heading="Day">
-            <Text>{this.state.nbSteps}</Text>
+            <DayPodometer />
           </Tab>
           <Tab heading="Week">
 
@@ -68,11 +49,3 @@ class Podometer extends Component {
 }
 //<DayPodometer />
 //<WeekPodometer />
-
-const mapStateToProps = (state) => {
-  return {
-    goal: state.setNewGoal.goal
-  }
-}
-
-export default connect(mapStateToProps)(Podometer)
