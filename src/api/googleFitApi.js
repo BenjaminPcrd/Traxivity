@@ -33,26 +33,62 @@ export function getAuth() {
    .catch(() => {
      console.log("AUTH_ERROR")
    })
-  GoogleFit.onAuthorizeFailure((res) => {
-    console.log(res)
-  })
-  GoogleFit.onAuthorize((res) => {
-    console.log(res)
-  })
 }
 
 export function getDailyStepCount(callback) {
   var start = new Date()
   var end = new Date()
-  start.setHours(0, 0, 0, 0)
-  end.setHours(23, 59, 59, 999)
-  GoogleFit.getDailyStepCountSamples(start, end)
-    .then((res) => {
-      console.log(res[2].steps[0].value)
+  const UTC_OFFSET = start.getTimezoneOffset()/60
+  start.setHours(0 - UTC_OFFSET, 0, 0, 0)
+  end.setHours(23 - UTC_OFFSET, 59, 59, 999)
+  const opt = {
+    startDate: start,
+    endDate: end
+  };
+  GoogleFit.getDailyStepCountSamples(opt, (err, res) => {
+    if(err) {
+      callback(err, 0)
+    } else (
       callback(false, res[2].steps[0].value)
-    })
-    .catch((err) => {
-      console.warn(err)
-      callback(err, false)
-    })
+    )
+  })
+}
+
+export function getDailyCalorieCount(callback) {
+  var start = new Date()
+  var end = new Date()
+  const UTC_OFFSET = start.getTimezoneOffset()/60
+  start.setHours(0 - UTC_OFFSET, 0, 0, 0)
+  end.setHours(23 - UTC_OFFSET, 59, 59, 999)
+  const opt = {
+    startDate: start,
+    endDate: end,
+    basalCalculation: false
+  };
+  GoogleFit.getDailyCalorieSamples(opt, (err, res) => {
+    if(err) {
+      callback(err, 0)
+    } else (
+      callback(false, res[0].calorie.toFixed(0))
+    )
+  });
+}
+
+export function getDailyDistanceCount(callback) {
+  var start = new Date()
+  var end = new Date()
+  const UTC_OFFSET = start.getTimezoneOffset()/60
+  start.setHours(0 - UTC_OFFSET, 0, 0, 0)
+  end.setHours(23 - UTC_OFFSET, 59, 59, 999)
+  const opt = {
+    startDate: start,
+    endDate: end
+  };
+  GoogleFit.getDailyDistanceSamples(opt, (err, res) => {
+    if(err) {
+      callback(err, 0)
+    } else (
+      callback(false, res)
+    )
+  })
 }
