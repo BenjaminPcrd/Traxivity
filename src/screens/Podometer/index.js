@@ -11,6 +11,7 @@ import {
   Tab,
   Text
 } from "native-base";
+import { getAuth, getDailyStepCount } from '../../api/googleFitApi'
 //import DayPodometer from './DayPodometer';
 //import WeekPodometer from './WeekPodometer';
 
@@ -33,7 +34,8 @@ export default class Podometer extends Component {
         </Header>
         <Tabs>
           <Tab heading="Day">
-
+            <Button full onPress={() =>getAuth()}><Text>getAuth</Text></Button>
+            <Button full onPress={() =>getDailyStepCount()}><Text>display Step</Text></Button>
           </Tab>
           <Tab heading="Week">
 
