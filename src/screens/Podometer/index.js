@@ -12,7 +12,7 @@ import {
   Text
 } from "native-base";
 
-import DayPodometer from './DayPodometer';
+import DayProgressCircle from './DayProgressCircle';
 //import WeekPodometer from './WeekPodometer';
 
 export default class Podometer extends Component {
@@ -34,7 +34,7 @@ export default class Podometer extends Component {
         </Header>
         <Tabs>
           <Tab heading="Day">
-            <DayPodometer />
+            <DayProgressCircle />
           </Tab>
           <Tab heading="Week">
 

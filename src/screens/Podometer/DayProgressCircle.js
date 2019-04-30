@@ -10,11 +10,12 @@ import {
   Text
 } from "native-base";
 
-class DayPodometer extends Component {
+class DayProgressCircle extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      progress: 0,
+      percentProgress: 0,
+      stepProgress: 0,
       nbSteps: 0
     }
     getAuth()
@@ -24,35 +25,37 @@ class DayPodometer extends Component {
     GoogleFit.onAuthorize((res) => {
       getDailyStepCount((error, result) => {
         this.setState({nbSteps: result})
-        let progress = 0;
+        let percentProgress = 0;
+        let stepProgress = 0
         setInterval(() => {
-          progress += 0.5
-          if (progress > ((this.state.nbSteps/this.props.goal) * 100).toFixed(0)) {
-            progress = ((this.state.nbSteps/this.props.goal) * 100).toFixed(0)
+          percentProgress += 1
+          stepProgress += 15
+          if(percentProgress > ((this.state.nbSteps/this.props.goal) * 100).toFixed(0)) {
+            percentProgress = ((this.state.nbSteps/this.props.goal) * 100).toFixed(0)
           }
-          this.setState({ progress });
-        }, 5);
+          if(stepProgress > this.state.nbSteps) {
+            stepProgress = this.state.nbSteps
+          }
+          this.setState({percentProgress, stepProgress });
+        }, 10);
       })
     })
   }
 
   render() {
-
-    console.log(this.state.progress)
     const screenWidth = Dimensions.get('window').width
-    let progressLabel = Number(this.state.progress).toFixed(0)
     return (
       <Container style={{alignItems: 'center', marginTop: 20}}>
         <ProgressCircle
-          percent={Number(this.state.progress)}
+          percent={Number(this.state.percentProgress)}
           radius={screenWidth/3}
           borderWidth={15}
           color="blue"
           shadowColor="grey"
           bgColor="white"
         >
-          <Text style={{ fontSize: 18 }}>{this.state.nbSteps + ' steps'}</Text>
-          <Text style={{ fontSize: 18 }}>{progressLabel + '% of the goal'}</Text>
+          <Text style={{ fontSize: 18 }}>{this.state.stepProgress + ' steps'}</Text>
+          <Text style={{ fontSize: 18 }}>{this.state.percentProgress + '% of goal'}</Text>
         </ProgressCircle>
       </Container>
     );
@@ -65,4 +68,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(DayPodometer)
+export default connect(mapStateToProps)(DayProgressCircle)
