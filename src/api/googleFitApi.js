@@ -49,15 +49,15 @@ export function getDayStepCount(callback) {
     if(err) {
       callback(err, 0)
     } else (
-      callback(false, res[2].steps[0].value)
+      callback(false, res.filter(obj => obj.source === "com.google.android.gms:estimated_steps")[0].steps[0].value)
     )
   })
 }
 
 export function getWeekStepCount(callback) {
-  //var start = new Date('2019-04-25T19:24:00')
+  //var start = new Date('2019-04-28T19:24:00')
   var start = new Date()
-  //var end = new Date('2019-04-25T19:24:00')
+  //var end = new Date('2019-04-28T19:24:00')
   var end = new Date()
   var nbDays = start.getDay();
   if(nbDays == 0) nbDays = 7
