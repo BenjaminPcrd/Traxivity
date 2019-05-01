@@ -12,8 +12,8 @@ import {
   Text
 } from "native-base";
 
-import DayProgressCircle from './DayProgressCircle';
-//import WeekPodometer from './WeekPodometer';
+import DayTabAndroid from './DayTabAndroid';
+import WeekTabAndroid from './WeekTabAndroid';
 
 export default class Podometer extends Component {
   render() {
@@ -34,10 +34,10 @@ export default class Podometer extends Component {
         </Header>
         <Tabs>
           <Tab heading="Day">
-            <DayProgressCircle />
+            <DayTabAndroid />
           </Tab>
           <Tab heading="Week">
-
+            <WeekTabAndroid />
           </Tab>
           <Tab heading="Messages">
             <Text>Messages tab</Text>
@@ -47,5 +47,3 @@ export default class Podometer extends Component {
     );
   }
 }
-//<DayPodometer />
-//<WeekPodometer />

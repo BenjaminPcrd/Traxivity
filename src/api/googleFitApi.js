@@ -35,7 +35,7 @@ export function getAuth() {
    })
 }
 
-export function getDailyStepCount(callback) {
+export function getDayStepCount(callback) {
   var start = new Date()
   var end = new Date()
   const UTC_OFFSET = start.getTimezoneOffset()/60
@@ -50,6 +50,29 @@ export function getDailyStepCount(callback) {
       callback(err, 0)
     } else (
       callback(false, res[2].steps[0].value)
+    )
+  })
+}
+
+export function getWeekStepCount(callback) {
+  //var start = new Date('2019-04-25T19:24:00')
+  var start = new Date()
+  //var end = new Date('2019-04-25T19:24:00')
+  var end = new Date()
+  var nbDays = start.getDay();
+  if(nbDays == 0) nbDays = 7
+  start.setHours(0, 0, 0, 0)
+  end.setHours(23, 59, 59, 999)
+  start.setDate(start.getDate() - (nbDays-1))
+  const opt = {
+    startDate: start,
+    endDate: end
+  };
+  GoogleFit.getDailyStepCountSamples(opt, (err, res) => {
+    if(err) {
+      callback(err, 0)
+    } else (
+      callback(false, res[2].steps)
     )
   })
 }

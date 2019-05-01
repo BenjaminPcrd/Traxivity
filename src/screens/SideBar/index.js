@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Image } from "react-native";
+import { Image, FlatList } from "react-native";
 import {
   Content,
   Text,
-  List,
   ListItem,
   Icon,
   Container,
@@ -29,14 +28,6 @@ const datas = [
 ];
 
 class SideBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      shadowOffsetWidth: 1,
-      shadowRadius: 4
-    };
-  }
-
   render() {
     return (
       <Container>
@@ -44,7 +35,7 @@ class SideBar extends Component {
         <Image
             source={{
               uri:
-                "https://raw.githubusercontent.com/GeekyAnts/NativeBase-KitchenSink/master/assets/drawer-cover.png"
+                "https://tse1.mm.bing.net/th?id=OIP.fOgK7I4fMaYKzMlwexqmbQHaDt"
             }}
             style={{
               height: 120,
@@ -56,24 +47,26 @@ class SideBar extends Component {
           <Image
             square
             style={{
-              height: 80,
-              width: 70,
+              height: 85,
+              width: 160,
               position: "absolute",
               alignSelf: "center",
               top: 20
             }}
             source={{
               uri:
-                "https://raw.githubusercontent.com/GeekyAnts/NativeBase-KitchenSink/master/assets/logo.png"
+                "http://www.comp.rgu.ac.uk/wp-content/uploads/2017/02/LOGO-SelfBack-300x155.png"
             }}
           />
-          <List dataArray={datas} contentContainerStyle={{ marginTop: 120 }} renderRow=
-            {
-              data =>
-              <ListItem button noBorder onPress={() => this.props.navigation.navigate(data.route)} >
+          <FlatList
+            data={datas}
+            contentContainerStyle={{ marginTop: 120 }}
+            keyExtractor={(item) => item.route}
+            renderItem={({item}) =>
+              <ListItem button noBorder onPress={() => this.props.navigation.navigate(item.route)} >
                 <Left>
-                  <Icon active name={data.icon} style={{ color: "#777", fontSize: 26, width: 30 }}/>
-                  <Text> {data.name} </Text>
+                  <Icon active name={item.icon} style={{ color: "#777", fontSize: 26, width: 30 }}/>
+                  <Text> {item.name} </Text>
                 </Left>
               </ListItem>
             }
