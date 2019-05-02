@@ -13,7 +13,7 @@ import {
 } from "native-base";
 
 import DayTabAndroid from './DayTabAndroid';
-import WeekTabAndroid from './WeekTabAndroid';
+import WeekTab from './WeekTab';
 
 export default class Podometer extends Component {
   render() {
@@ -37,7 +37,7 @@ export default class Podometer extends Component {
             <DayTabAndroid />
           </Tab>
           <Tab heading="Week">
-            <WeekTabAndroid/>
+            <WeekTab/>
           </Tab>
           <Tab heading="Messages">
             <Text>Messages tab</Text>
