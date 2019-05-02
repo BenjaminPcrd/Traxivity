@@ -30,7 +30,7 @@ export default class WeekProgress extends Component {
     }
     const screenWidth = Dimensions.get('window').width
     return (
-      <Container>
+      <Container style={{flex: 12}}>
         <BarChart
           data={data}
           width={screenWidth}

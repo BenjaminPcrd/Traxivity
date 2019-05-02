@@ -54,16 +54,7 @@ export function getDayStepCount(callback) {
   })
 }
 
-export function getWeekStepCount(callback) {
-  //var start = new Date('2019-04-28T19:24:00')
-  var start = new Date()
-  //var end = new Date('2019-04-28T19:24:00')
-  var end = new Date()
-  var nbDays = start.getDay();
-  if(nbDays == 0) nbDays = 7
-  start.setHours(0, 0, 0, 0)
-  end.setHours(23, 59, 59, 999)
-  start.setDate(start.getDate() - (nbDays-1))
+export function getWeekStepCount(start, end, callback) {
   const opt = {
     startDate: start,
     endDate: end

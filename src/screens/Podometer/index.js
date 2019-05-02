@@ -37,7 +37,7 @@ export default class Podometer extends Component {
             <DayTabAndroid />
           </Tab>
           <Tab heading="Week">
-            <WeekTabAndroid />
+            <WeekTabAndroid/>
           </Tab>
           <Tab heading="Messages">
             <Text>Messages tab</Text>
