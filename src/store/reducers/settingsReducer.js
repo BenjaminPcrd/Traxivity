@@ -1,6 +1,8 @@
 const initialState = {
-  startDayTime: 8,
-  endDayTime: 22
+  startDayHour: 8,
+  startDayMinute: 0,
+  endDayHour: 22,
+  endDayMinute: 0
 }
 
 function setStartEndDayTime(state = initialState, action) {
@@ -9,13 +11,15 @@ function setStartEndDayTime(state = initialState, action) {
     case 'SET_START_DAY_TIME':
       nextState = {
         ...state,
-        startDayTime: action.value
+        startDayHour: action.value.hour,
+        startDayMinute: action.value.minute
       }
       return nextState || state
     case 'SET_END_DAY_TIME':
       nextState = {
         ...state,
-        endDayTime: action.value
+        endDayHour: action.value.hour,
+        endDayMinute: action.value.minute
       }
       return nextState || state
     default:
