@@ -49,7 +49,14 @@ class WeekTab extends Component {
     })
   }
 
+  arrSum = function(arr){
+    return arr.reduce(function(a,b){
+      return a + b
+    }, 0);
+  }
+
   render() {
+    var totalStep = this.arrSum((this.state.tabStep).map(x => x.value))
     return (
       <Container>
         <Container style={{flexDirection: 'row', justifyContent: 'center'}}>
@@ -72,6 +79,9 @@ class WeekTab extends Component {
             }
           >
             <Icon name="ios-arrow-forward"/></Button>
+        </Container>
+        <Container style={{flexDirection: 'row', justifyContent: 'center'}}>
+          <Text style={{fontSize: 12, color: 'grey'}}>{totalStep + " steps"}</Text>
         </Container>
         <WeekProgress tabStep={this.state.tabStep}/>
       </Container>

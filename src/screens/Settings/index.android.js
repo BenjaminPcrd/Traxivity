@@ -40,7 +40,7 @@ class Settings extends Component {
           case 'start':
             var o = new Date('2019-01-01T' + this.props.endDayHour.pad(2) + ':' + this.props.endDayMinute.pad(2) + ':00')
             if(t >= o) {
-              ToastAndroid.show('The start day must preceed the end date !', ToastAndroid.LONG);
+              ToastAndroid.show('The start time must preceed the end time !', ToastAndroid.LONG);
             } else {
               this.props.dispatch(act)
             }
@@ -48,7 +48,7 @@ class Settings extends Component {
           case 'end':
             var o = new Date('2019-01-01T' + this.props.startDayHour.pad(2) + ':' + this.props.startDayMinute.pad(2) + ':00')
             if(t <= o) {
-              ToastAndroid.show('The start day must preceed the end date !', ToastAndroid.LONG);
+              ToastAndroid.show('The start time must preceed the end time !', ToastAndroid.LONG);
             } else {
               this.props.dispatch(act)
             }
