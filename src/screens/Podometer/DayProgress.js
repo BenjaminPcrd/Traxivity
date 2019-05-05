@@ -12,14 +12,14 @@ export default class DayProgress extends Component {
     return (
       <Container style={{alignItems: 'center', marginTop: 20}}>
         <ProgressCircle
-          percent={Number(this.props.percentProgress)}
+          percent={Number(((this.props.nbSteps/this.props.goal)*100).toFixed(0))}
           radius={screenWidth/3}
           borderWidth={15}
           color="blue"
           shadowColor='#c8c8c8'
           bgColor="white"
         >
-          <Text style={{ fontSize: 20 }}>{this.props.percentProgress + '% of goal'}</Text>
+          <Text style={{ fontSize: 20 }}>{((this.props.nbSteps/this.props.goal)*100).toFixed(0) + '% of goal'}</Text>
           <Text style={{ fontSize: 14, marginTop: 20, color: 'grey' }}>Your daily goal:</Text>
           <Text style={{ fontSize: 14 }}>{this.props.goal + ' steps'}</Text>
         </ProgressCircle>

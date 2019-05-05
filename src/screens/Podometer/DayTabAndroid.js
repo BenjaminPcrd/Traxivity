@@ -8,7 +8,6 @@ class DayTabAndroid extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      percentProgress: 0,
       nbSteps: 0,
       nbCal: 0,
       km: 0
@@ -20,14 +19,14 @@ class DayTabAndroid extends Component {
     GoogleFit.onAuthorize((res) => {
       getDayStepCount((error, result) => {
         this.setState({nbSteps: result})
-        let percentProgress = 0;
+        /*let percentProgress = 0;
         setInterval(() => {
           percentProgress += 1
           if(percentProgress > ((this.state.nbSteps/this.props.goal) * 100).toFixed(0)) {
             percentProgress = ((this.state.nbSteps/this.props.goal) * 100).toFixed(0)
           }
           this.setState({percentProgress });
-        }, 10);
+        }, 10);*/
       })
 
       getDailyCalorieCount((error, result) => {
@@ -41,7 +40,8 @@ class DayTabAndroid extends Component {
   }
 
   render() {
-    return <DayProgress goal={this.props.goal} percentProgress={this.state.percentProgress} nbSteps={this.state.nbSteps} nbCal={this.state.nbCal} km={this.state.km} />
+    console.log(this.props)
+    return <DayProgress goal={this.props.goal} nbSteps={this.state.nbSteps} nbCal={this.state.nbCal} km={this.state.km} />
   }
 }
 
