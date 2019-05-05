@@ -14,6 +14,7 @@ import {
 
 import DayTabAndroid from './DayTabAndroid';
 import WeekTab from './WeekTab';
+import MonthTab from './MonthTab'
 
 export default class Podometer extends Component {
   render() {
@@ -38,6 +39,9 @@ export default class Podometer extends Component {
           </Tab>
           <Tab heading="Week">
             <WeekTab/>
+          </Tab>
+          <Tab heading="Month">
+            <MonthTab/>
           </Tab>
           <Tab heading="Messages">
             <Text>Messages tab</Text>

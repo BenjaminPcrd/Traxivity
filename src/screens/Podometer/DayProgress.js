@@ -7,12 +7,29 @@ import {
 } from "native-base";
 
 export default class DayProgress extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      progress: 0
+    }
+  }
+
+  componentDidMount() {
+    let p = 0
+    setInterval(() => {
+      p += 1
+      if(p > ((this.props.nbSteps/this.props.goal) * 100).toFixed(0)) {
+        p = ((this.props.nbSteps/this.props.goal) * 100).toFixed(0)
+      }
+      this.setState({progress: p})
+    }, 10);
+  }
   render() {
     const screenWidth = Dimensions.get('window').width
     return (
       <Container style={{alignItems: 'center', marginTop: 20}}>
         <ProgressCircle
-          percent={Number(((this.props.nbSteps/this.props.goal)*100).toFixed(0))}
+          percent={Number(this.state.progress)}
           radius={screenWidth/3}
           borderWidth={15}
           color="blue"

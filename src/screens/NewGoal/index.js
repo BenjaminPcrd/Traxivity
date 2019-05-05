@@ -27,7 +27,7 @@ class NewGoal extends Component {
 
   _onConfirm() {
     Alert.alert(
-      "You have chosen to walk " + this.state.nbStep + "steps a day",
+      "You have chosen to walk " + this.state.nbStep + " steps a day",
       'Do you agree?',
       [
         {

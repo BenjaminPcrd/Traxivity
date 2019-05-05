@@ -7,7 +7,6 @@ import {
 } from "native-base";
 
 import {
-  LineChart,
   BarChart
 } from 'react-native-chart-kit'
 

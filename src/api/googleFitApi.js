@@ -54,7 +54,7 @@ export function getDayStepCount(callback) {
   })
 }
 
-export function getWeekStepCount(start, end, callback) {
+export function getPeriodStepCount(start, end, callback) {
   const opt = {
     startDate: start,
     endDate: end

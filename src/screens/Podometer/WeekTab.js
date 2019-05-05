@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import WeekProgress from './WeekProgress'
-import { getWeekStepCount } from '../../api/googleFitApi'
+import { getPeriodStepCount } from '../../api/googleFitApi'
 import {
   Container,
   Button,
@@ -28,7 +28,7 @@ class WeekTab extends Component {
   }
 
   _getSteps() {
-    getWeekStepCount(this.state.startDate, this.state.endDate, (error, result) => {
+    getPeriodStepCount(this.state.startDate, this.state.endDate, (error, result) => {
       this.setState({tabStep: result})
     })
   }
